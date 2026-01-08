@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <!-- SEO -->
+    <title>SwiftSeek – Search the Web, Cleanly</title>
+    <meta name="description" content="SwiftSeek is a clean, fast, modern search engine for web and news." />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/image/logo.png" type="image/png" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/tabui.css" />
+    <!-- Preload for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= HEADER ================= -->
+    <header class="app-header">
+<!-- ================= TAB BAR ================= -->
+<div id="tabBar" class="tab-bar hidden"></div>
+
+<!-- ================= TAB CONTENT ================= -->
+<div id="tabContent" class="tab-content hidden">
+
+    <iframe
+        id="tabFrame"
+        sandbox="allow-scripts allow-same-origin allow-forms">
+    </iframe>
+
+    <!-- Fallback for iframe-blocked sites -->
+    <div id="iframeFallback" class="iframe-fallback hidden">
+    <h3>Site can’t be opened here</h3>
+    <p>
+        This website doesn’t allow in-app viewing due to security restrictions.
+    </p>
+    <button id="openExternalBtn">Open in new tab ↗</button>
+</div>
+
+
+</div>
+
+
+
+        <!-- Brand -->
+        <div class="brand">
+            <h1 class="logo">SwiftSeek</h1>
+            <p class="tagline">Search the web, cleanly.</p>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button
+            id="themeToggle"
+            class="theme-toggle"
+            aria-label="Toggle dark mode">
+            🌙 Dark Mode
+        </button>
+
+        <!-- ================= SEARCH BAR ================= -->
+        <div class="search-bar" role="search">
+
+            <input
+                id="query"
+                type="text"
+                placeholder="Search anything…"
+                autocomplete="off"
+                aria-label="Search query"
+            />
+
+            <input
+                id="domain"
+                type="text"
+                placeholder="Filter by domain (optional)"
+                aria-label="Filter by domain"
+            />
+
+            <button
+                id="searchBtn"
+                class="search-btn"
+                onclick="search()"
+                aria-label="Search">
+                Search
+            </button>
+
+        </div>
+
+        <!-- ================= QUICK CHIPS ================= -->
+        <div class="quick-chips" aria-label="Suggested searches">
+            <button onclick="quickSearch('technology news')">technology news</button>
+            <button onclick="quickSearch('startup news')">startup news</button>
+            <button onclick="quickSearch('india news')">india news</button>
+            <button onclick="quickSearch('ai news')">ai news</button>
+            <button onclick="quickSearch('java')">java</button>
+        </div>
+
+        <!-- ================= RECENT SEARCHES ================= -->
+        <div
+            id="recentSearches"
+            class="recent-searches"
+            aria-live="polite">
+        </div>
+
+    </header>
+
+    <!-- ================= MAIN ================= -->
+    <main class="content">
+
+        <!-- Loader -->
+        <div
+            id="loader"
+            class="loader hidden"
+            aria-hidden="true">
+        </div>
+
+        <!-- Results -->
+        <section
+            id="results"
+            class="results"
+            aria-live="polite"
+            aria-busy="false">
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="app-footer">
+        <p>
+            Built with ❤️ using Spring Boot & Lucene ·
+            <span class="muted">SwiftSeek © 2026</span>
+        </p>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="/js/script.js"></script>
+
+<!-- Small helper for quick chips -->
+<script>
+    function quickSearch(text) {
+        const input = document.getElementById("query");
+        input.value = text;
+        search();
+    }
+</script>
+
+</body>
+</html>
